@@ -171,7 +171,7 @@ public class ArticoloDAOImpl extends AbstractMySQLDAO implements ArticoloDAO {
 		String query = "SELECT * FROM articolo A "
 				+ " JOIN categoria C ON A.categoria_fk = C.id_categoria "
 				+ "WHERE (A.codice like ? OR ? = '') AND (A.descrizione like ? OR ? = '') "
-				+ " AND (A.prezzo = ? OR ? = '')";
+				+ " AND (A.prezzo = ? OR ? = '') AND (C.id_categoria = ? OR ? is null)";
 
 		try (PreparedStatement ps = connection.prepareStatement(query)) {
 			ps.setString(1, '%'+input.getCodice()+'%');
@@ -180,6 +180,8 @@ public class ArticoloDAOImpl extends AbstractMySQLDAO implements ArticoloDAO {
 			ps.setString(4, input.getDescrizione());
 			ps.setInt(5, input.getPrezzo());
 			ps.setInt(6, input.getPrezzo());
+			ps.setLong(7, input.getCategoria().getIdCategoria());
+			ps.setLong(8, input.getCategoria().getIdCategoria());
 
 			rs = ps.executeQuery();
 

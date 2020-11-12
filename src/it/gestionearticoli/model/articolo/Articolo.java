@@ -26,6 +26,13 @@ public class Articolo {
 		this.prezzo = prezzo;
 	}
 
+	public Articolo(String codice, String descrizione, Integer prezzo, long parseLong) {
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.prezzo = prezzo;
+		this.categoria = categoria;
+	}
+
 	public Long getId() {
 		return id;
 	}

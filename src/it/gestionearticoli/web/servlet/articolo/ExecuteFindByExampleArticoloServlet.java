@@ -14,6 +14,7 @@ import it.gestionearticoli.model.articolo.Articolo;
 import it.gestionearticoli.model.utente.Utente;
 import it.gestionearticoli.service.MyServiceFactory;
 import it.gestionearticoli.service.articolo.ArticoloService;
+import it.gestionearticoli.service.categoria.CategoriaService;
 
 
 @WebServlet("/ExecuteFindByExampleArticoloServlet")
@@ -47,6 +48,7 @@ public class ExecuteFindByExampleArticoloServlet extends HttpServlet {
 		String codArt = request.getParameter("codiceArt");
 		String descArt = request.getParameter("descrArt");
 		String prezArt = request.getParameter("prezzoArt");
+		String idCategoria = request.getParameter("idCat");
 		
 		Integer prezzo = !prezArt.isEmpty() ? Integer.parseInt(prezArt) : 0;
 		if (prezzo < 0) {
@@ -56,6 +58,9 @@ public class ExecuteFindByExampleArticoloServlet extends HttpServlet {
 		}
 		
 		// occupiamoci delle operazioni di business
+//		CategoriaService serviceCat = MyServiceFactory.getCategoriaServiceInstance();
+//		serviceCat.findById(Long.ParseLong(idCategoria));
+		
 		ArticoloService service = MyServiceFactory.getArticoloServiceInstance();
 		Articolo articoloInstance = new Articolo(codArt, descArt, prezzo);
 

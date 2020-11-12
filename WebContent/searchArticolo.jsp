@@ -75,8 +75,8 @@
 					</div>
 					
 					<%-- <div class="form-group col-md-6">
-							<label>Categoria</label> <select id="listaCategorieAttribute"
-								name="descrCat" class="form-control" required>
+							<label>Categoria</label> <select id="idCat"
+								name="idCat" class="form-control" required>
 								<option value="">- Seleziona Categoria -</option>
 								<c:forEach items="${requestScope.listaCategorieAttribute}"
 									var="categoria">
