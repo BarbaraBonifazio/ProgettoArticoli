@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.gestionearticoli.model.articolo.Articolo;
+import it.gestionearticoli.model.categoria.Categoria;
 import it.gestionearticoli.model.utente.Utente;
 import it.gestionearticoli.service.MyServiceFactory;
 import it.gestionearticoli.service.articolo.ArticoloService;
@@ -58,15 +59,14 @@ public class ExecuteFindByExampleArticoloServlet extends HttpServlet {
 		}
 		
 		// occupiamoci delle operazioni di business
-//		CategoriaService serviceCat = MyServiceFactory.getCategoriaServiceInstance();
-//		serviceCat.findById(Long.ParseLong(idCategoria));
-		
+		CategoriaService serviceCat = MyServiceFactory.getCategoriaServiceInstance();
 		ArticoloService service = MyServiceFactory.getArticoloServiceInstance();
 		Articolo articoloInstance = new Articolo(codArt, descArt, prezzo);
 
 		try {
 			
-			
+			Categoria categoria = serviceCat.findById(Long.parseLong(idCategoria));
+			articoloInstance.setCategoria(categoria);
 			List<Articolo> listaArt = service.findByExample(articoloInstance);			
 			request.setAttribute("listaArtPerDesc", listaArt);
 
